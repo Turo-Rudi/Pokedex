@@ -49,8 +49,8 @@ let pokemonList = [
 //loop pokemonList names and height and display biggest
 for (var i = 0; i < pokemonList.length; i++) {
   if (pokemonList[i].height > 0.5) {
-    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ') ' + ' - That’s the biggest! ');
+    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ') ' + ' - That’s the biggest! '+'<br>');
   }else {
-    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ') ');
+    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ') '+'<br>');
   }
 };
