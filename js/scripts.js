@@ -46,11 +46,16 @@ let pokemonList = [
   },
 ];
 
-//loop pokemonList names and height and display biggest
+/*loop pokemonList names and height and display biggest
 for (var i = 0; i < pokemonList.length; i++) {
   if (pokemonList[i].height > 0.5) {
-    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ') ' + ' - That’s the biggest! '+'<br>');
+    document.write('<h3>'+pokemonList[i].name+'</h3>' + ' [weight: ' + pokemonList[i].weight + '] ' + '<br>' + ' [height: ' + pokemonList[i].height + '] ' + ' - That’s the biggest! ' + '<br>');
   }else {
-    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ') '+'<br>');
+    document.write('<h3>'+pokemonList[i].name+'</h3>' + ' [weight: ' + pokemonList[i].weight + '] ' + '<br>' + ' [height: ' + pokemonList[i].height + '] ');
   }
-};
+};*/
+
+//forEach() loop pokemonList -at least- names and height
+pokemonList.forEach(function(pokemonList) {
+    document.write('<h3>'+pokemonList.name+'</h3>' + ' [weight: ' + pokemonList.weight + '] ' + '<br>' + ' [height: ' + pokemonList.height + '] ');
+});
