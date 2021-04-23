@@ -1,46 +1,7 @@
 //IIFE
-let pokemonRepository = (function() {
-  let pokemonList = [
-    {
-      name: 'Charmander',
-      height: 0.6,
-      weight: 8.5,
-      gender: ['Male', 'Female'],
-      type: ['Fire'],
-    },
-
-    {
-      name: 'Squirtle',
-      height: 0.5,
-      weight: 9,
-      gender: ['Male', 'Female'],
-      type: ['Water'],
-    },
-
-    {
-      name: 'Caterpie',
-      height: 0.3,
-      weight: 2.9,
-      gender: ['Male', 'Female'],
-      type: ['Bug'],
-    },
-
-    {
-      name: 'Rattata',
-      height: 0.3,
-      weight: 3.5,
-      gender: ['Male', 'Female'],
-      type: ['Normal'],
-    },
-
-    {
-      name: 'Weedle',
-      height: 0.3,
-      weight: 3.2,
-      gender: ['Male', 'Female'],
-      type: ['Bug', 'Poison'],
-    },
-  ];
+let pokemonRepository = (function () {
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   function addListItem(pokemon) {
     let pokemonList = document.querySelector('.pokemon-list');
@@ -54,13 +15,15 @@ let pokemonRepository = (function() {
         // appended the button to ul
     pokemonList.appendChild(listItem);
         // EventListener for button
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
       showDetails(pokemon);
     });
   }
 
   function showDetails(pokemon) {
-    console.log(pokemon);
+    loadDetails(pokemon).then(function () {
+      console.log(pokemon);
+    });
   }
 
   function getAll() {
@@ -70,11 +33,7 @@ let pokemonRepository = (function() {
   function add(pokemon) {
     if (
       typeof pokemon === 'object' &&
-      'name' in pokemon &&
-      'height' in pokemon &&
-      'weight' in pokemon &&
-      'gender' in pokemon &&
-      'type' in pokemon
+      'name' in pokemon
     ) {
       pokemonList.push(pokemon);
     } else {
@@ -82,18 +41,52 @@ let pokemonRepository = (function() {
     }
   }
 
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+        console.log(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
+
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  }
+
   return {
     getAll: getAll,
     add: add,
     addListItem: addListItem,
-    showDetails: showDetails
+    showDetails: showDetails,
+    loadList: loadList,
+    loadDetails: loadDetails
   };
 })();
 
 //forEach() loop IIFE pokemonList -at least- names and height
 //let pokemonList = pokemonRepository.getAll();
 
-pokemonRepository.getAll().forEach(function(pokemon) {
-  pokemonRepository.addListItem(pokemon);
-  //document.write('<h3>'+pokemonList.name+'</h3>' + ' [weight: ' + pokemonList.weight + '] ' + '<br>' + ' [height: ' + pokemonList.height + '] ');
+pokemonRepository.loadList().then(function () {
+  pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  });
 });
+  //document.write('<h3>'+pokemonList.name+'</h3>' + ' [weight: ' + pokemonList.weight + '] ' + '<br>' + ' [height: ' + pokemonList.height + '] ');
