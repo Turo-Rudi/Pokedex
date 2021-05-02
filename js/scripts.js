@@ -47,9 +47,9 @@ let pokemonRepository = (function () {
     let imageBackElement = document.createElement('img');
     imageBackElement.setAttribute('src', pokemon.imageUrlBack);
     let heightElement = document.createElement('p');
-    heightElement.innerHTML = '<strong>Height: </strong>' + pokemon.height;
+    heightElement.innerHTML = '<strong>Height: </strong>' + pokemon.height + ' m';
     let weightElement = document.createElement('p');
-    weightElement.innerHTML = '<strong>Weight: </strong>' + pokemon.weight;
+    weightElement.innerHTML = '<strong>Weight: </strong>' + pokemon.weight + ' kg';
     let typesElement = document.createElement('p');
     typesElement.innerHTML = '<strong>Type: </strong>' + pokemon.types;
     let abilitiesElement = document.createElement('p');
