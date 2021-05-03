@@ -1,6 +1,17 @@
-Small web application with HTML, CSS, and JavaScript that loads data from an external API and enables the viewing of data points in detail.
+## Podex App
 
-Key Features
-● Load data from an external source (API)
-● View a list of items
-● On user action (e.g., by clicking on a list item), view details for that item
+A JavaScript app built with HTML, CSS, and JavaScript, which uses an external API.
+
+## User Goals
+
+Users are able to view a list of pokemon and see more details for a given data item upon click.
+
+## Key Features
+
+- Load data from an external source (API)
+- View a list of pokemon
+- On user click, view details in modal for that pokemon
+- Search by pokemon name
+
+API link: https://pokeapi.co/api/v2/pokemon/?limit=150
+Project link: https://turo-rudi.github.io/Pokedex/
