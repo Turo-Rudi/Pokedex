@@ -13,5 +13,5 @@ Users are able to view a list of pokemon and see more details for a given data i
 - On user click, view details in modal for that pokemon
 - Search by pokemon name
 
-API link: https://pokeapi.co/api/v2/pokemon/?limit=150
+API link: https://pokeapi.co/api/v2/pokemon/?limit=150 <br>
 Project link: https://turo-rudi.github.io/Pokedex/
