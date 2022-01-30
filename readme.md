@@ -1,6 +1,6 @@
 ## Pokedex App
 
-A JavaScript app built with HTML, CSS, and JavaScript, which uses an external API.
+An app built with HTML, CSS, and JavaScript, that uses an external API. Users are able to search for their pokemons by name and see details on a modal upon clicking on the pokemons name.
 
 ## User Goals
 
